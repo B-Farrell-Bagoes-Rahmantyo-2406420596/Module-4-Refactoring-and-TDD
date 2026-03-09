@@ -89,7 +89,8 @@ public class OrderServiceImplTest {
         doReturn( null).when(orderRepository).findById("zczc");
         assertThrows (NoSuchElementException.class,
                 () -> orderService.updateStatus( "zczc", OrderStatus.SUCCESS.getValue()));
-        verify(orderRepository,times(8)).save(any (Order.class));
+
+        verify(orderRepository,times(0)).save(any (Order.class));
     }
 
 
