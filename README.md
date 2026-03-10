@@ -71,3 +71,16 @@ Prinsip ini digunakan agar module-module itu depends ke sebuah abstraction bukan
 ## Disadvantage
 Kekurangan utama dalam tidak menerapkan prinsip SOLID yakni, codebase jadi sulit untuk dimaintain, baik karena kesulitan menemukan 
 titik masalah maupun fungsi dapat saja hancur ketika menambahkan fungsi-fungsi baru. 
+
+# Refleksi - Module 3
+---
+- Keunggulan yang saya rasa dengan menggunakan metode TDD adalah terkadang kita mempunyai kecenderungan membuat test yang memang 
+sesuai dengan program kita. Dengan TDD, kita memastikan apa saja yang perlu dilakukan dulu (kriteria-kriteria model/fungsi dll), 
+lalu kita buat programnya untuk memenuhi kebutuhan yang telah kita buat.  
+  
+Hasil analisa Unit Test saya terhadap  F.I.R.S.T. principle:
+- Fast, saya rasa unit test saya dapat dijalankan dengan cukup cepat. Kira-kira tidak mencapai lebih dari 10 detik. 
+- Independent, Saya membuat antar test tidak mengganggu test lain. Saya juga begunakan beforeEach untuk membuat state awal test sama. 
+- Repeatable, Test saya dapat dijalankan baik di lokal maupun dengan CI saya di repo git
+- Self-Validating, Test saya cukup jelas untuk diidentifikasi mana yang pass mana yang gagal dan letak kegagalannya
+- Timely, Sesuai commit message saya.
