@@ -1,4 +1,4 @@
-package com.eshop.repository;
+package id.ac.ui.cs.advprog.eshop.repository;
 
 import id.ac.ui.cs.advprog.eshop.model.Payment.CodPayment;
 import id.ac.ui.cs.advprog.eshop.model.Payment.Payment;
@@ -19,29 +19,29 @@ public class PaymentRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        paymentRepository = new PaymentRepositoryImpl();
+        paymentRepository = new PaymentRepository();
         Payment payment1 = new VoucherPayment("PAY-1", "Voucher",new HashMap<>());
         Payment payment2 = new TransferPayment("PAY-2", "Transfer",new HashMap<>());
 
-        paymentRepository.save(payment1);
-        paymentRepository.save(payment2);
+        paymentRepository.addPayment(payment1);
+        paymentRepository.addPayment(payment2);
     }
 
     @Test
     void testSaveAndFindByIdFound() {
         Map<String, String> paymentData = new HashMap<>();
         paymentData.put("Jln Akmal", "100");
-        paymentRepository.save(new CodPayment("PAY-3", "COD", paymentData));
-        Payment savedPayment = paymentRepository.findById("PAY-3");
+        paymentRepository.addPayment(new CodPayment("PAY-3", "COD", paymentData));
+        Payment savedPayment = paymentRepository.getPayment("PAY-3");
         assertNotNull(savedPayment);
         assertEquals("PAY-3", savedPayment.getId());
-        assertEquals("Voucher", savedPayment.getMethode());
+        assertEquals("COD", savedPayment.getMethode());
         assertEquals("100", savedPayment.getPaymentData().get("Jln Akmal"));
     }
 
     @Test
     void testFindByIdNotFound() {
-        Payment savedPayment = paymentRepository.findById("PAY-3");
+        Payment savedPayment = paymentRepository.getPayment("PAY-3");
         assertNull(savedPayment);
     }
 
