@@ -22,7 +22,8 @@ class PaymentTest {
         assertEquals(methode, payment.getMethode());
         assertEquals("ESHOP1234ABC5678",
                 payment.getPaymentData().get("voucherCode"));
-        assertEquals("Success", payment.getStatus());
+        payment.setStatus("voucherCode");
+        assertEquals("SUCCESS", payment.getStatus());
     }
 
     @Test
@@ -32,7 +33,8 @@ class PaymentTest {
         Map<String,String> paymentData = new HashMap<>();
         paymentData.put("voucherCode", "ESHOP123ABCDEFGH");
         Payment payment = new VoucherPayment(id, methode, paymentData);
-        assertEquals("Failed", payment.getStatus());
+        payment.setStatus("voucherCode");
+        assertEquals("REJECTED", payment.getStatus());
     }
 
     @Test
@@ -54,7 +56,8 @@ class PaymentTest {
         assertEquals(methode, payment.getMethode());
         assertEquals("ESHOP-BNI-011",
                 payment.getPaymentData().get("BNI"));
-        assertEquals("Success", payment.getStatus());
+        payment.setStatus("BNI");
+        assertEquals("SUCCESS", payment.getStatus());
     }
 
     @Test
@@ -64,7 +67,8 @@ class PaymentTest {
         Map<String,String> paymentData = new HashMap<>();
         paymentData.put("BNI", "");
         Payment payment = new TransferPayment(id, methode, paymentData);
-        assertEquals("Failed", payment.getStatus());
+        payment.setStatus("BNI");
+        assertEquals("REJECTED", payment.getStatus());
     }
 
     @Test
@@ -73,7 +77,8 @@ class PaymentTest {
         String methode = "Transfer";
         Map<String,String> paymentData = new HashMap<>();
         Payment payment = new TransferPayment(id, methode, paymentData);
-        assertEquals("Failed", payment.getStatus());
+        payment.setStatus("BNI");
+        assertEquals("REJECTED", payment.getStatus());
     }
 
     @Test
@@ -87,7 +92,7 @@ class PaymentTest {
     @Test
     void createCodPaymentSuccess() {
         String id = "PAY123";
-        String methode = "Cod";
+        String methode = "COD";
         Map<String,String> paymentData = new HashMap<>();
         paymentData.put("Jln Akmal", "20000");
         Payment payment = new CodPayment(id, methode, paymentData);
@@ -95,17 +100,19 @@ class PaymentTest {
         assertEquals(methode, payment.getMethode());
         assertEquals("20000",
                 payment.getPaymentData().get("Jln Akmal"));
-        assertEquals("Success", payment.getStatus());
+        payment.setStatus("Jln Akmal");
+        assertEquals("SUCCESS", payment.getStatus());
     }
 
     @Test
     void createCodPaymentFailedIfWrongValue() {
         String id = "PAY123";
-        String methode = "Cod";
+        String methode = "COD";
         Map<String,String> paymentData = new HashMap<>();
         paymentData.put("Jln Peter", "");
         Payment payment = new CodPayment(id, methode, paymentData);
-        assertEquals("Failed", payment.getStatus());
+        payment.setStatus("Jln Peter");
+        assertEquals("REJECTED", payment.getStatus());
     }
 
     @Test
@@ -114,7 +121,8 @@ class PaymentTest {
         String methode = "COD";
         Map<String,String> paymentData = new HashMap<>();
         Payment payment = new CodPayment(id, methode, paymentData);
-        assertEquals("Failed", payment.getStatus());
+        payment.setStatus("Jln Akmal");
+        assertEquals("REJECTED", payment.getStatus());
     }
 
     @Test
