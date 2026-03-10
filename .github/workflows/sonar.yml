@@ -34,10 +34,10 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@v2
         with:
           args: >
-            -Dsonar.projectKey=B-Farrell-Bagoes-Rahmantyo-2406420596_Module-2-CI-CD-and-DevOps
-            -Dsonar.organization=b-farrell-bagoes-rahmantyo-2406420596
             -Dsonar.java.binaries=build/classes
             -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PROJECT_KEY: B-Farrell-Bagoes-Rahmantyo-2406420596_Module-4-Refactoring-and-TDD
+          SONAR_ORGANIZATION: b-farrell-bagoes-rahmantyo-2406420596
